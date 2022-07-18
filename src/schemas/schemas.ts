@@ -11,3 +11,8 @@ export const credentialsSchema = joi.object({
     username: joi.string().required(),
     password: joi.string().required()
 })
+
+export const notesSchema = joi.object({
+    title: joi.string().pattern(/^.{1,50}$/).required(),
+    note: joi.string().pattern(/^.{1,1000}$/).required()
+})
