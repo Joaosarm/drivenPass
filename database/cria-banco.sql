@@ -4,7 +4,7 @@ CREATE TABLE "users" (
 	"id" SERIAL PRIMARY KEY,
 	"email" TEXT NOT NULL UNIQUE,
     "password" TEXT NOT NULL
-)
+);
 
 CREATE TABLE "credentials"(
     "id" SERIAL NOT NULL PRIMARY KEY,
