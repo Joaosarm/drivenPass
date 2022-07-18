@@ -17,3 +17,10 @@ export async function getCredentials(userId : number){
     credentials.map(credential => credential.password = cryptr.decrypt(credential.password));
     return credentials;
 }
+
+export async function getCredential(userId : number, id : number){
+    let credential = await credentialsRepository.findById(id);
+    await credentialsUtils.checkOwner(credential.userId, userId);
+    credential.password = cryptr.decrypt(credential.password);
+    return credential;
+}

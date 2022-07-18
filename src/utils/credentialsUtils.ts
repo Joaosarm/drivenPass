@@ -9,3 +9,12 @@ export async function checkTitle(userId: number, title: string) {
     }
   }
 }
+
+export async function checkOwner(credentialUserId: number, userId: number) {
+  if (credentialUserId!==userId) {
+    throw {
+      type: "Invalid requisition",
+      message: "Not the credential owner"
+    }
+  }
+}

@@ -8,7 +8,7 @@ export function validateToken(req : Request, res: Response, next: NextFunction){
     jwt.verify(token, key, (err, result) => { 
         if(err) return res.status(401).send({ err: err });
         if(result) {
-            res.locals.id = result;
+            res.locals.userId = result;
             next();
         }
     });
