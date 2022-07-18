@@ -18,3 +18,11 @@ export async function findTitlesById(userId: number) {
         },
     });
 }
+
+export async function getAllCredentials(userId: number) {
+    return await prisma.credentials.findMany({
+        where: {
+            userId
+        }
+    });
+}
