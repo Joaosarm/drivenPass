@@ -10,11 +10,19 @@ export async function checkTitle(userId: number, title: string) {
   }
 }
 
-export async function checkOwner(credentialUserId: number, userId: number) {
-  if (credentialUserId!==userId) {
+export async function checkCredential(userId: number, id : number) {
+  let credential = await credentialsRepository.findById(id);
+  if (!credential) {
+    throw {
+      type: "Invalid requisition",
+      message: "Credential non-existing"
+    }
+  }
+  if (credential.userId!==userId) {
     throw {
       type: "Invalid requisition",
       message: "Not the credential owner"
     }
   }
+  return credential;
 }

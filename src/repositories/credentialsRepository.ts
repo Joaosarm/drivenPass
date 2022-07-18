@@ -34,3 +34,11 @@ export async function findById(id : number){
         }
     });
 }
+
+export async function deleteById(id : number){
+    return await prisma.credentials.delete({
+        where: {
+            id
+        }
+    });
+}

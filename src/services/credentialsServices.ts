@@ -19,8 +19,12 @@ export async function getCredentials(userId : number){
 }
 
 export async function getCredential(userId : number, id : number){
-    let credential = await credentialsRepository.findById(id);
-    await credentialsUtils.checkOwner(credential.userId, userId);
+    const credential = await credentialsUtils.checkCredential(userId, id);
     credential.password = cryptr.decrypt(credential.password);
     return credential;
+}
+
+export async function deleteCredential(userId : number, id : number){
+    await credentialsUtils.checkCredential(userId, id);
+    await credentialsRepository.deleteById(id);
 }
