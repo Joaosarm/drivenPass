@@ -1,7 +1,7 @@
-import * as cardsRepository from "../repositories/cardsRepository.js"
+import * as wifisRepository from "../repositories/wifisRepository.js"
 
 export async function checkTitle(userId: number, title: string) {
-  const existingTitles = await cardsRepository.findTitlesById(userId);
+  const existingTitles = await wifisRepository.findTitlesById(userId);
   if (existingTitles.find(existingTitle => existingTitle.title === title)) {
     throw {
       type: "Invalid requisition",
@@ -10,18 +10,18 @@ export async function checkTitle(userId: number, title: string) {
   }
 }
 
-export async function checkCard(userId: number, id : number) {
-  let credential = await cardsRepository.findById(id);
+export async function checkWifi(userId: number, id : number) {
+  let credential = await wifisRepository.findById(id);
   if (!credential) {
     throw {
       type: "Invalid requisition",
-      message: "Card non-existing"
+      message: "Wi-fi non-existing"
     }
   }
   if (credential.userId!==userId) {
     throw {
       type: "Invalid requisition",
-      message: "Not the card owner"
+      message: "Not the wi-fi owner"
     }
   }
   return credential;

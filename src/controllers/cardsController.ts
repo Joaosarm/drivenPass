@@ -11,15 +11,15 @@ export async function createCard(req: Request, res: Response) {
 
 export async function getCards(req: Request, res: Response) {
     let { userId } = res.locals;
-    const credentials = await cardsServices.getCards(parseInt(userId));
-    res.status(200).send(credentials);
+    const cards = await cardsServices.getCards(parseInt(userId));
+    res.status(200).send(cards);
   }
   
   export async function getOneCard(req: Request, res: Response) {
     let { id }= req.params;
     let { userId } = res.locals;
-    const credential = await cardsServices.getCard(parseInt(userId), parseInt(id));
-    res.status(200).send(credential);
+    const card = await cardsServices.getCard(parseInt(userId), parseInt(id));
+    res.status(200).send(card);
   }
   
   export async function deleteCard(req: Request, res: Response) {

@@ -1,15 +1,15 @@
-import { cards } from "@prisma/client";
+import { wifis } from "@prisma/client";
 import { prisma } from "../config/database.js";
 
-export type CreateCardlData = Omit<cards, "id">;
+export type CreateWiFilData = Omit<wifis, "id">;
 
 
-export async function insert(cardData: CreateCardlData) {
-    await prisma.cards.create({ data: cardData });
+export async function insert(wifiData: CreateWiFilData) {
+    await prisma.wifis.create({ data: wifiData });
 }
 
 export async function findTitlesById(userId: number) {
-    return await prisma.cards.findMany({
+    return await prisma.wifis.findMany({
         where: {
             userId
         },
@@ -19,8 +19,8 @@ export async function findTitlesById(userId: number) {
     });
 }
 
-export async function getAllCards(userId: number) {
-    return await prisma.cards.findMany({
+export async function getAllWifis(userId: number) {
+    return await prisma.wifis.findMany({
         where: {
             userId
         }
@@ -28,7 +28,7 @@ export async function getAllCards(userId: number) {
 }
 
 export async function findById(id : number){
-    return await prisma.cards.findUnique({
+    return await prisma.wifis.findUnique({
         where: {
             id
         }
@@ -36,7 +36,7 @@ export async function findById(id : number){
 }
 
 export async function deleteById(id : number){
-    return await prisma.cards.delete({
+    return await prisma.wifis.delete({
         where: {
             id
         }

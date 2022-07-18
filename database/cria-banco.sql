@@ -34,3 +34,11 @@ CREATE TABLE "cards"(
     "type" "cardsTypes" NOT NULL,
     "userId" INTEGER NOT NULL REFERENCES users(id)
 );
+
+CREATE TABLE "wifis"(
+    "id" SERIAL NOT NULL PRIMARY KEY,
+    "title" TEXT NOT NULL,
+    "name" TEXT NOT NULL, 
+    "password" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL REFERENCES users(id)
+);

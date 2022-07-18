@@ -19,7 +19,7 @@ export async function findTitlesById(userId: number) {
     });
 }
 
-export async function getAllCredentials(userId: number) {
+export async function getAllNotes(userId: number) {
     return await prisma.notes.findMany({
         where: {
             userId

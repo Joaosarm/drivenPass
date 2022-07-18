@@ -14,22 +14,22 @@ export async function createCard(cardData : CreateCardlData){
 }
 
 export async function getCards(userId : number){
-    const credentials = await cardsRepository.getAllCredentials(userId);
-    credentials.map(credential =>{
-         credential.password = cryptr.decrypt(credential.password);
-         credential.CVV = cryptr.decrypt(credential.CVV);
+    const cards = await cardsRepository.getAllCards(userId);
+    cards.map(card =>{
+        card.password = cryptr.decrypt(card.password);
+        card.CVV = cryptr.decrypt(card.CVV);
         });
-    return credentials;
+    return cards;
 }
 
 export async function getCard(userId : number, id : number){
-    const credential = await cardsUtils.checkCredential(userId, id);
-    credential.password = cryptr.decrypt(credential.password);
-    credential.CVV = cryptr.decrypt(credential.CVV);
-    return credential;
+    const card = await cardsUtils.checkCard(userId, id);
+    card.password = cryptr.decrypt(card.password);
+    card.CVV = cryptr.decrypt(card.CVV);
+    return card;
 }
 
 export async function deleteCard(userId : number, id : number){
-    await cardsUtils.checkCredential(userId, id);
+    await cardsUtils.checkCard(userId, id);
     await cardsRepository.deleteById(id);
 }

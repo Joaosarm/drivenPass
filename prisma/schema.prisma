@@ -14,6 +14,7 @@ model Users {
   cards       cards[]       @relation("cardsTousers")
   credentials Credentials[] @relation("credentialsTousers")
   notes       notes[]       @relation("notesTousers")
+  wifis       wifis[]       @relation("usersTowifis")
 
   @@map("users")
 }
@@ -50,6 +51,15 @@ model cards {
   type        cardsTypes
   userId      Int
   users       Users      @relation("cardsTousers", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model wifis {
+  id       Int    @id @default(autoincrement())
+  title    String
+  name     String
+  password String
+  userId   Int
+  users    Users  @relation("usersTowifis", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum cardsTypes {

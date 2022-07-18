@@ -9,7 +9,7 @@ export async function createNote(noteData : CreateNoteData){
 }
 
 export async function getNotes(userId : number){
-    const credentials = await notesRepository.getAllCredentials(userId);
+    const credentials = await notesRepository.getAllNotes(userId);
     return credentials;
 }
 
