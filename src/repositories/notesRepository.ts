@@ -18,3 +18,27 @@ export async function findTitlesById(userId: number) {
         },
     });
 }
+
+export async function getAllCredentials(userId: number) {
+    return await prisma.notes.findMany({
+        where: {
+            userId
+        }
+    });
+}
+
+export async function findById(id : number){
+    return await prisma.notes.findUnique({
+        where: {
+            id
+        }
+    });
+}
+
+export async function deleteById(id : number){
+    return await prisma.notes.delete({
+        where: {
+            id
+        }
+    });
+}

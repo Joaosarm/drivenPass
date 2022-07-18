@@ -9,3 +9,20 @@ export async function checkTitle(userId: number, title: string) {
     }
   }
 }
+
+export async function checkNote(userId: number, id : number) {
+    let note = await notesRepository.findById(id);
+    if (!note) {
+      throw {
+        type: "Invalid requisition",
+        message: "Note non-existing"
+      }
+    }
+    if (note.userId!==userId) {
+      throw {
+        type: "Invalid requisition",
+        message: "Not the note owner"
+      }
+    }
+    return note;
+  }
