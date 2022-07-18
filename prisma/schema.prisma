@@ -11,6 +11,7 @@ model Users {
   id          Int           @id @default(autoincrement())
   email       String        @unique
   password    String
+  cards       cards[]       @relation("cardsTousers")
   credentials Credentials[] @relation("credentialsTousers")
   notes       notes[]       @relation("notesTousers")
 
@@ -35,4 +36,24 @@ model notes {
   note   String
   userId Int
   users  Users  @relation("notesTousers", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model cards {
+  id          Int        @id @default(autoincrement())
+  title       String
+  number      Int
+  printedName String
+  CVV         String
+  expireDate  String
+  password    String
+  isVirtual   Boolean    @default(false)
+  type        cardsTypes
+  userId      Int
+  users       Users      @relation("cardsTousers", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum cardsTypes {
+  credit
+  debit
+  both
 }
