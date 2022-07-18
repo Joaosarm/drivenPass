@@ -7,7 +7,7 @@ import { CreateUserData } from "../repositories/authRepository.js";
 export async function signUp(userData : CreateUserData){
     const {email, password} = userData;
     await authUtils.checkUserExistance(email);
-    const encryptedPassword = bcrypt.hashSync(password, 10);
+    const encryptedPassword = bcrypt.hashSync(password, process.env.BCRYPT_KEY);
     await authRepository.insert({email, password: encryptedPassword});
 }
 
